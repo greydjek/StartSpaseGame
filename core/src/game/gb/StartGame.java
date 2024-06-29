@@ -19,8 +19,8 @@ public class StartGame extends ApplicationAdapter {
 
 	@Override
 	public void render () {
-		x++;y+=2;
-		ScreenUtils.clear(Color.BLUE);
+		x+=2;y+=4;
+		ScreenUtils.clear(Color.RED);
 		batch.begin();
 		batch.draw(img, 200, 100);
 		batch.setColor(0.2f,0.2f,0.2f,1f);

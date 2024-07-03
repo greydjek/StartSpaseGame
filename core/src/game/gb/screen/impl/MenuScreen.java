@@ -10,22 +10,44 @@ public class MenuScreen extends BaseScreen {
 private     Texture img;
 private Vector2 touch;
 private Vector2 v;
-private Vector2 adnVector2;
+    private Vector2 adnVector2;
+    private Vector2 start;
+
+
     @Override
     public void show() {
         super.show();
     img = new Texture("badlogic.jpg");
     touch = new Vector2();
+    start = new Vector2(0,0);
     v= new Vector2(1,1);
     adnVector2 = new Vector2();
     }
-
+Vector2 retVector(Vector2 v, Vector2 v2){
+        if(v.x!=v2.x & v.x<v2.x){
+            v.add(1,0);
+            if(v.x!=v2.x & v.x>v2.x){
+                v.add(-1,0);
+            }
+            if(v.y!= v2.y & v.y<v2.y){
+                v.add(0,1);
+                if(v.y!= v2.y & v.y>v2.y){
+                    v.add(0,-1);
+                }
+            }
+        }
+    return v;
+    }
     @Override
     public void render(float delta) {
         super.render(delta);
 batch.begin();
-batch.draw(img,touch.x, touch.y);
+batch.draw(img,start.x,start.y);
 batch.end();
+if(!touch.equals(adnVector2)){
+touch.add(retVector(start,adnVector2));
+if( )
+}
 
 //touch.add(v);// прибавляем вектор получаем Эффект движения (чем больше вектор тем быстрее)
     }
@@ -42,9 +64,9 @@ batch.end();
             return super.touchDown(screenX, screenY, pointer, button);
     }
 
-    @Override
-    public boolean touchCancelled(int screenX, int screenY, int pointer, int button) {
+     @Override
+    public boolean touchUp(int screenX, int screenY, int pointer, int button) {
         adnVector2.set(screenX,Gdx.graphics.getHeight() - screenY);
-        return super.touchCancelled(screenX, screenY, pointer, button);
+        return super.touchUp(screenX, screenY, pointer, button);
     }
 }
